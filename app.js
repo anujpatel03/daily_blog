@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const _=require("lodash");
+const _ = require("lodash");
 const app = express();
+const port =process.env.PORT || 3000;
 
 const contents = [];
 const homeStartingContent = "Welcome to Daily Journal! Capture your daily moments, thoughts, and experiences in a personal space that is all your own. Embrace self-reflection, express yourself. Start your transformative journaling journey today.";
@@ -35,19 +36,23 @@ app.post("/compose", (req, res) => {
 })
 
 app.get("/posts/:topic", (req, res) => {
-    const lowerRequestedTopic=_.trim(_.lowerCase(req.params.topic));
-    contents.forEach((content)=>{
-        const lowerContentTitle=_.trim(_.lowerCase(content.title));
-        if(lowerRequestedTopic===lowerContentTitle){
-            res.render("post",{postTitle:content.title,postContent:content.post});
+    const lowerRequestedTopic = _.trim(_.lowerCase(req.params.topic));
+    contents.forEach((content) => {
+        const lowerContentTitle = _.trim(_.lowerCase(content.title));
+        if (lowerRequestedTopic === lowerContentTitle) {
+            res.render("post", { postTitle: content.title, postContent: content.post });
             // console.log("Match found");
         }
-        
+
     })
     // console.log(req.params.topic); 
 })
 
-app.listen(80, () => {
-    console.log("Server is running at port 80");
-})
+app.listen(port, function () {
+    console.log(`Server is running at port: ${port}`);
+});
+
+// app.listen(80, () => {
+//     console.log("Server is running at port 80");
+// })
 
