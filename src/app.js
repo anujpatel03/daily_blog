@@ -4,6 +4,7 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const app = express();
 const port =process.env.PORT || 3000;
+const router = express.Router();
 
 const contents = [];
 const homeStartingContent = "Welcome to Daily Journal! Capture your daily moments, thoughts, and experiences in a personal space that is all your own. Embrace self-reflection, express yourself. Start your transformative journaling journey today.";
@@ -47,6 +48,10 @@ app.get("/posts/:topic", (req, res) => {
     })
     // console.log(req.params.topic); 
 })
+
+app.use('/.netlify/functions/api', router);  // path must route to lambda
+
+
 
 app.listen(port, function () {
     console.log(`Server is running at port: ${port}`);
