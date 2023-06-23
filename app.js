@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 // const router = express.Router();
 
 const contents = [];
-const homeStartingContent = "Welcome to Daily Journal! Capture your daily moments, thoughts, and experiences in a personal space that is all your own. Embrace self-reflection, express yourself. Start your transformative journaling journey today.";
+const homeStartingContent = "Welcome to Daily Log! Capture your daily moments, thoughts, and experiences in a personal space that is all your own. Embrace self-reflection, express yourself. Start your transformative journaling journey today.";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
